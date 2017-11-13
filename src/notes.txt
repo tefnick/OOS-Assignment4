@@ -1,10 +1,10 @@
 Notes take during lecture that may help:
 
-1) every view will have its own MovieController and each controller will implement Observer interface and call update() method.
+1) The model Movie.java will inherit abstract parent Observer class and when a change occurs it will call setChange() and notifyObserver() methods
 
-2) The model Movie.java will inherit abstract parent Observer class and when a change occurs it will call setChange() method
+2) every view will have its own MovieController and each controller will implement Observer interface and call update() method.
 
 Ex:
-Producer- inherits parent abstract class and when a change occurs it calls setChange()
+Producer- inherits parent abstract class and when a change occurs it calls setChange() and notifyObserver()
 
 Consumer- implements Observer interface and listens for changes, when a change occurs it calls update() method.
