@@ -7,9 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import movie.model.Movie;
 import movie.view.MovieController;
+import movie.view.MovieObserver;
 
 public class AppMain extends Application {
+	private Movie movie;
 	public AppMain() {
 	}
 	
@@ -17,9 +20,16 @@ public class AppMain extends Application {
 		launch(args);
 	}
 
+	@SuppressWarnings("null")
 	public void createMovieView(int viewX, int viewY) throws IOException {
 		Stage stage = new Stage();
+		MovieObserver observer = new MovieObserver();
 		MovieController controller = new MovieController();
+		movie = new Movie(" ",0,"","",0);
+		movie.setMovieObserver(observer);
+		observer.addObserver(controller);
+	
+	
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));
 		loader.setController(controller);
 		Parent pane = loader.load();
@@ -32,6 +42,7 @@ public class AppMain extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
 		//create first view
 		createMovieView(50, 100);
 		

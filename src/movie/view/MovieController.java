@@ -1,10 +1,13 @@
 package movie.view;
 
 import java.net.URL;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -16,7 +19,7 @@ public class MovieController implements Initializable, Observer {
 
     @FXML
     private TextField movieTitle;
-
+    private MovieObserver movieobserver;
     @FXML
     private TextField director;
 
@@ -32,13 +35,21 @@ public class MovieController implements Initializable, Observer {
     @FXML
     private Slider ratingSlider;
 
+
+
+
     public MovieController() {
-    	
+
     }
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		movieTitle.textProperty().addListener(new ChangeListener<String>(){
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				movieTitle.setText(newValue);
+			}
+		});
 	}
 
 	/**
@@ -47,8 +58,14 @@ public class MovieController implements Initializable, Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		movieobserver = (MovieObserver) o;
+		movieTitle.setText(movieobserver.getLastMovieTitle());	
+		director.setText(movieobserver.getLastdirector());
+		releaseYear.setText(movieobserver.getLastreleaseYear());
+		writer.setText(movieobserver.getLastwriter());
+		ratingText.setText(movieobserver.getLastrating());	
+		}
 		
 	}
 
-}
+

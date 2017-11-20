@@ -1,11 +1,14 @@
 package movie.model;
 
+import movie.view.MovieObserver;
+
 public class Movie {
 	private String movieTitle;
 	private int releaseYear;
 	private String director;
 	private String writer;
 	private int rating;
+	private MovieObserver movieobserver;
 	
 	public Movie(String title, int releaseYear, String director, String writer, int rating) {
 		this.movieTitle = title;
@@ -53,5 +56,12 @@ public class Movie {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	public MovieObserver getMovieObserver(){
+		return movieobserver;
+		
+	}
+	public void setMovieObserver(MovieObserver moObserver){
+		this.movieobserver = moObserver;
 	}
 }
