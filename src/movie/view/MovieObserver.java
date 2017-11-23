@@ -1,11 +1,15 @@
 package movie.view;
 import java.util.Observable;
+
+import movie.model.Movie;
+//observable
 public class MovieObserver extends Observable {
 	private String lastmovieTitle;
 	private int lastreleaseYear;
 	private String lastdirector;
 	private String lastwriter;
 	private int lastrating;
+	Movie movie = new Movie(lastmovieTitle,lastreleaseYear,lastdirector,lastwriter,lastrating);
 	public MovieObserver(){
 	lastmovieTitle = "";
 	lastreleaseYear = 0;
@@ -13,14 +17,15 @@ public class MovieObserver extends Observable {
 	lastwriter = "";
 	lastrating = 1;	
 	}
-	public void detailchanges(String movieTitle, int releaseYear, String director, String writer, int rating){
+	public void detailchanges(String movieTitle, int releaseYear,String director,String writer,int rating){
 		lastmovieTitle = movieTitle;
 		lastreleaseYear = releaseYear;
 		lastdirector = director;
 		lastwriter = writer;
 		lastrating = rating;
-		this.notifyObservers();
 		this.setChanged();
+		//this.notifyObservers();
+		
 	}
 	public String getLastMovieTitle(){
 		return lastmovieTitle;

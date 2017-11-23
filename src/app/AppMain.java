@@ -22,10 +22,11 @@ public class AppMain extends Application {
 	public void createMovieView(int viewX, int viewY) throws IOException {
 		Stage stage = new Stage();
 		MovieObserver observer = new MovieObserver();
-		MovieController controller = new MovieController();
-		movie = new Movie(" ",0,"","",0);
+		MovieController controller = new MovieController(movie);
+		movie = new Movie("vhi ",0,"bvbhv","bhys",0);
 		movie.setMovieObserver(observer);
 		observer.addObserver(controller);
+		observer.detailchanges("movie",0,"hunn","hbb",0);
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));
 		loader.setController(controller);
 		Parent pane = loader.load();

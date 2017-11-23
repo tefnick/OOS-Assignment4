@@ -13,8 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.InputMethodEvent;
+import movie.model.Movie;
 import javafx.fxml.Initializable;
 
+//observer
 public class MovieController implements Initializable, Observer {
 
     @FXML
@@ -35,11 +37,11 @@ public class MovieController implements Initializable, Observer {
     @FXML
     private Slider ratingSlider;
 
+    private Movie movie;
 
 
-
-    public MovieController() {
-
+    public MovieController(Movie movie) {
+    	this.movie = movie;
     }
 	
 	@Override
@@ -59,13 +61,12 @@ public class MovieController implements Initializable, Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		movieobserver = (MovieObserver) o;
-		movieTitle.setText(movieobserver.getLastMovieTitle());	
+		movieTitle.setText(movieobserver.getLastMovieTitle());
 		director.setText(movieobserver.getLastdirector());
 		releaseYear.setText(movieobserver.getLastreleaseYear());
 		writer.setText(movieobserver.getLastwriter());
 		ratingText.setText(movieobserver.getLastrating());	
 		}
-		
 	}
 
 
