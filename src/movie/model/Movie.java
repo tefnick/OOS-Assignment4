@@ -1,8 +1,9 @@
 package movie.model;
 
 import movie.view.MovieObserver;
+import java.util.Observable;
 
-public class Movie {
+public class Movie extends Observable{
 	private String movieTitle;
 	private int releaseYear;
 	private String director;
