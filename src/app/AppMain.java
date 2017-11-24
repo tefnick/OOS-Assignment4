@@ -13,6 +13,7 @@ import movie.view.MovieObserver;
 
 public class AppMain extends Application {
 	private Movie movie;
+	private static MovieObserver observer;
 	public AppMain() {
 	}
 	
@@ -23,10 +24,9 @@ public class AppMain extends Application {
 		Stage stage = new Stage();
 		MovieObserver observer = new MovieObserver();
 		MovieController controller = new MovieController(movie);
-		movie = new Movie("vhi ",0,"bvbhv","bhys",0);
+		movie = new Movie(" ",0," "," ",1);
 		movie.setMovieObserver(observer);
 		observer.addObserver(controller);
-		observer.detailchanges("movie",0,"hunn","hbb",0);
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));
 		loader.setController(controller);
 		Parent pane = loader.load();
@@ -35,6 +35,7 @@ public class AppMain extends Application {
 		stage.setX(viewX);
 		stage.setY(viewY);
         stage.show();
+        observer.detailchanges("",0,"","",1);
 	}
 	
 	@Override

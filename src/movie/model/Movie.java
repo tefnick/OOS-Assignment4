@@ -57,6 +57,7 @@ public class Movie {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	
 	public MovieObserver getMovieObserver(){
 		return movieobserver;
 		

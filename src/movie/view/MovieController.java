@@ -21,7 +21,9 @@ public class MovieController implements Initializable, Observer {
 
     @FXML
     private TextField movieTitle;
+    
     private MovieObserver movieobserver;
+    
     @FXML
     private TextField director;
 
@@ -44,21 +46,46 @@ public class MovieController implements Initializable, Observer {
     	this.movie = movie;
     }
 	
-	@Override
+	
 	public void initialize(URL location, ResourceBundle resources) {
 		movieTitle.textProperty().addListener(new ChangeListener<String>(){
-			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				movieTitle.setText(newValue);
+				movieobserver.setLastmovieTitle(newValue);
 			}
 		});
+		
+		director.textProperty().addListener(new ChangeListener<String>(){
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				movieobserver.setLastdirector(newValue);
+			}
+		});
+		
+		releaseYear.textProperty().addListener(new ChangeListener<String>(){
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				try{
+					Integer.parseInt(newValue);
+					movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
+				}
+				catch(NumberFormatException e){
+					releaseYear.setText(newValue);
+				}
+			}
+		});
+		
+		writer.textProperty().addListener(new ChangeListener<String>(){
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				movieobserver.setLastwriter(newValue);
+			}
+		});
+		
+		
+		
 	}
 
 	/**
 	 * Implement this method from the Observer Interface
 	 * Note: I think we implement Observer in this class?
 	 */
-	@Override
 	public void update(Observable o, Object arg) {
 		movieobserver = (MovieObserver) o;
 		movieTitle.setText(movieobserver.getLastMovieTitle());

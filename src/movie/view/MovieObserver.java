@@ -10,13 +10,15 @@ public class MovieObserver extends Observable {
 	private String lastwriter;
 	private int lastrating;
 	Movie movie = new Movie(lastmovieTitle,lastreleaseYear,lastdirector,lastwriter,lastrating);
+	
 	public MovieObserver(){
-	lastmovieTitle = "";
+	lastmovieTitle = " ";
 	lastreleaseYear = 0;
-	lastdirector = "";
-	lastwriter = "";
+	lastdirector = " ";
+	lastwriter = " ";
 	lastrating = 1;	
 	}
+	
 	public void detailchanges(String movieTitle, int releaseYear,String director,String writer,int rating){
 		lastmovieTitle = movieTitle;
 		lastreleaseYear = releaseYear;
@@ -24,29 +26,44 @@ public class MovieObserver extends Observable {
 		lastwriter = writer;
 		lastrating = rating;
 		this.setChanged();
-		//this.notifyObservers();
-		
+		this.notifyObservers();
 	}
-	public String getLastMovieTitle(){
-		return lastmovieTitle;
-	}
+	
 	public void setLastmovieTitle(String lastmovieTitle) {
 		this.lastmovieTitle = lastmovieTitle;
+		movie.setMovieTitle(this.lastmovieTitle);
 		this.setChanged();
 		this.notifyObservers();
 	}
 	public void setLastreleaseYear(int lastreleaseYear) {
 		this.lastreleaseYear = lastreleaseYear;
+		movie.setReleaseYear(this.lastreleaseYear);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	public void setLastdirector(String lastdirector) {
 		this.lastdirector = lastdirector;
+		movie.setDirector(this.lastdirector);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	public void setLastwriter(String lastwriter) {
 		this.lastwriter = lastwriter;
+		movie.setWriter(this.lastwriter);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	public void setLastrating(int lastrating) {
 		this.lastrating = lastrating;
+		movie.setRating(this.lastrating);
+		this.setChanged();
+		this.notifyObservers();
 	}
+	
+	public String getLastMovieTitle(){
+		return lastmovieTitle;
+	}
+	
 	public String getLastreleaseYear() {
 		return Integer.toString(lastreleaseYear);
 	}
