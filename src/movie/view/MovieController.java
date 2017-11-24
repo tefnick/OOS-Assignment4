@@ -48,6 +48,7 @@ public class MovieController implements Initializable, Observer {
 	
 	
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		movieTitle.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				movieobserver.setLastmovieTitle(newValue);
@@ -67,6 +68,7 @@ public class MovieController implements Initializable, Observer {
 					movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
 				}
 				catch(NumberFormatException e){
+					
 					releaseYear.setText(newValue);
 				}
 			}
@@ -78,8 +80,6 @@ public class MovieController implements Initializable, Observer {
 			}
 		});
 		
-		
-		
 	}
 
 	/**
@@ -90,9 +90,9 @@ public class MovieController implements Initializable, Observer {
 		movieobserver = (MovieObserver) o;
 		movieTitle.setText(movieobserver.getLastMovieTitle());
 		director.setText(movieobserver.getLastdirector());
-		releaseYear.setText(movieobserver.getLastreleaseYear());
+		//releaseYear.setText(movieobserver.getLastreleaseYear());
 		writer.setText(movieobserver.getLastwriter());
-		ratingText.setText(movieobserver.getLastrating());	
+		//ratingText.setText(movieobserver.getLastrating());	
 		}
 	}
 
