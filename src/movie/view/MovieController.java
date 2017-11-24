@@ -21,7 +21,7 @@ public class MovieController implements Initializable, Observer {
 
     @FXML
     private TextField movieTitle;
-    private MovieObserver movieobserver;
+
     @FXML
     private TextField director;
 
@@ -46,27 +46,25 @@ public class MovieController implements Initializable, Observer {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		movieTitle.textProperty().addListener(new ChangeListener<String>(){
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				movieTitle.setText(newValue);
-			}
-		});
+		this.movieTitle.setText("myMovie");
+		this.releaseYear.setText("1988");
+		this.director.setText("director");
+		this.writer.setText("writer");
+		this.ratingText.setText("9");
+		this.ratingSlider.adjustValue(9);
 	}
 
 	/**
 	 * Implement this method from the Observer Interface
-	 * Note: I think we implement Observer in this class?
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		movieobserver = (MovieObserver) o;
-		movieTitle.setText(movieobserver.getLastMovieTitle());
-		director.setText(movieobserver.getLastdirector());
-		releaseYear.setText(movieobserver.getLastreleaseYear());
-		writer.setText(movieobserver.getLastwriter());
-		ratingText.setText(movieobserver.getLastrating());	
-		}
-	}
+		Movie movie = (Movie) o;
+		this.director.setText(movie.getDirector());
+		//this.releaseYear.setText(movie.getReleaseYear());
+		this.writer.setText(movie.getWriter());
+		//this.ratingText.setText(movie.getRating());	
+	}	
+}
 
 

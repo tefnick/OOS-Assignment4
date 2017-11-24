@@ -24,7 +24,7 @@ public class AppMain extends Application {
 		MovieObserver observer = new MovieObserver();
 		MovieController controller = new MovieController(movie);
 		movie = new Movie("vhi ",0,"bvbhv","bhys",0);
-		movie.setMovieObserver(observer);
+		//movie.setMovieObserver(observer);
 		observer.addObserver(controller);
 		observer.detailchanges("movie",0,"hunn","hbb",0);
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));

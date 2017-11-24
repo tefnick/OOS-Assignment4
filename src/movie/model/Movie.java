@@ -1,6 +1,5 @@
 package movie.model;
 
-import movie.view.MovieObserver;
 import java.util.Observable;
 
 public class Movie extends Observable{
@@ -9,7 +8,6 @@ public class Movie extends Observable{
 	private String director;
 	private String writer;
 	private int rating;
-	private MovieObserver movieobserver;
 	
 	public Movie(String title, int releaseYear, String director, String writer, int rating) {
 		this.movieTitle = title;
@@ -25,6 +23,8 @@ public class Movie extends Observable{
 
 	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public int getReleaseYear() {
@@ -33,6 +33,8 @@ public class Movie extends Observable{
 
 	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public String getDirector() {
@@ -41,6 +43,8 @@ public class Movie extends Observable{
 
 	public void setDirector(String director) {
 		this.director = director;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public String getWriter() {
@@ -49,6 +53,8 @@ public class Movie extends Observable{
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public int getRating() {
@@ -57,12 +63,7 @@ public class Movie extends Observable{
 
 	public void setRating(int rating) {
 		this.rating = rating;
-	}
-	public MovieObserver getMovieObserver(){
-		return movieobserver;
-		
-	}
-	public void setMovieObserver(MovieObserver moObserver){
-		this.movieobserver = moObserver;
+		this.setChanged();
+		this.notifyObservers();
 	}
 }
