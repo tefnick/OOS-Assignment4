@@ -9,6 +9,9 @@ public class Movie extends Observable{
 	private String writer;
 	private int rating;
 	
+	public Movie(){
+	}
+	
 	public Movie(String title, int releaseYear, String director, String writer, int rating) {
 		this.movieTitle = title;
 		this.releaseYear = releaseYear;
