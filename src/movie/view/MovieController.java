@@ -88,7 +88,7 @@ public class MovieController implements Initializable, Observer {
 		ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				newValue = (int) ratingSlider.getValue();
-				movieobserver.setLastrating((int) newValue);			
+				movieobserver.setLastrating(newValue.intValue());			
 			}
 		});
 		
