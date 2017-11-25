@@ -37,37 +37,12 @@ public class MovieController implements Initializable, Observer {
     @FXML
     private Slider ratingSlider;
     
-    //need an arbitrary object to manage the concurrency lock in getInstanceMultiThread2
-  	private static final Object lock = new Object();
 
-  //use volatile if multi-threaded access to singleton 
-    private static volatile Movie movie = null;
 
-    public MovieController(){
+    public MovieController(Movie movie){
+    	movie = Movie.getInstanceMultiThread2();
     }
 
-    /**
-	 * if app is multi-threaded, use double-check lock to avoid most calls having to synchronize
-	 * from:
-	 * https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java
-	 * 
-	 * @return
-	 */
-	public static Movie getInstanceMultiThread2() {
-		//most calls will be after singleton already initialized
-		//so this unsynchronized if will bypass the synchronize for MOST calls
-		if(movie == null) {
-			//here is where we need to synchronize and only allow 1 thread to init the singleton
-			synchronized (lock) {
-				//2nd check to make sure another thread didn't already initialize it
-				if(movie == null) {
-					movie = new Movie();
-				}
-			}
-		}
-		
-		return movie;
-	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -85,6 +60,8 @@ public class MovieController implements Initializable, Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		Movie movie = (Movie) o;
+		movie.setMovieTitle("TEST");
+		this.movieTitle.setText(movie.getMovieTitle());
 		this.director.setText(movie.getDirector());
 		//this.releaseYear.setText(movie.getReleaseYear());
 		this.writer.setText(movie.getWriter());

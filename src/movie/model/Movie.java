@@ -2,6 +2,7 @@ package movie.model;
 
 import java.util.Observable;
 
+
 public class Movie extends Observable{
 	private String movieTitle;
 	private int releaseYear;
@@ -9,15 +10,57 @@ public class Movie extends Observable{
 	private String writer;
 	private int rating;
 	
-	public Movie(){
+    //need an arbitrary object to manage the concurrency lock in getInstanceMultiThread2
+  	private static final Object lock = new Object();
+
+  //use volatile if multi-threaded access to singleton 
+    private static volatile Movie movie = null;
+	
+	private Movie(){
 	}
 	
-	public Movie(String title, int releaseYear, String director, String writer, int rating) {
+	private Movie(String title, int releaseYear, String director, String writer, int rating) {
 		this.movieTitle = title;
 		this.releaseYear = releaseYear;
 		this.director = director;
 		this.writer = writer;
 		this.rating = rating;
+	}
+	
+	/**
+	 * nice and simple when app is single-threaded
+	 * 
+	 * @return
+	 */
+	public static Movie getInstanceSingleThread() {
+		if(movie == null) {
+			movie = new Movie();
+		}
+
+		return movie;
+	}
+	
+	/**
+	 * if app is multi-threaded, use double-check lock to avoid most calls having to synchronize
+	 * from:
+	 * https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java
+	 * 
+	 * @return
+	 */
+	public static Movie getInstanceMultiThread2() {
+		//most calls will be after singleton already initialized
+		//so this unsynchronized if will bypass the synchronize for MOST calls
+		if(movie == null) {
+			//here is where we need to synchronize and only allow 1 thread to init the singleton
+			synchronized (lock) {
+				//2nd check to make sure another thread didn't already initialize it
+				if(movie == null) {
+					movie = new Movie();
+				}
+			}
+		}
+		
+		return movie;
 	}
 
 	public String getMovieTitle() {

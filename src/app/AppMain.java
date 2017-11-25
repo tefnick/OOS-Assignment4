@@ -20,8 +20,8 @@ public class AppMain extends Application {
 	}
 	public void createMovieView(int viewX, int viewY) throws IOException {
 		Stage stage = new Stage();
-		MovieController controller = new MovieController();
-		movie = MovieController.getInstanceMultiThread2();
+		movie = Movie.getInstanceMultiThread2();
+		MovieController controller = new MovieController(movie);
 		movie.addObserver(controller);
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));
 		loader.setController(controller);
