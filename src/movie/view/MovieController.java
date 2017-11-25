@@ -90,9 +90,10 @@ public class MovieController implements Initializable, Observer {
 		movieobserver = (MovieObserver) o;
 		movieTitle.setText(movieobserver.getLastMovieTitle());
 		director.setText(movieobserver.getLastdirector());
-		//releaseYear.setText(movieobserver.getLastreleaseYear());
+		releaseYear.setText(movieobserver.getLastreleaseYear());
 		writer.setText(movieobserver.getLastwriter());
-		//ratingText.setText(movieobserver.getLastrating());	
+		ratingText.setText(movieobserver.getLastrating());
+		ratingSlider.adjustValue(Double.valueOf(movieobserver.getLastrating()));
 		}
 	}
 
