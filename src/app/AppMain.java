@@ -41,5 +41,6 @@ public class AppMain extends Application {
 		
 		//create second view
 		createMovieView(460, 100);
+		System.out.println("Number of Observers: "+ movie.countObservers());
 	}
 }

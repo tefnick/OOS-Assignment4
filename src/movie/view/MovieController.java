@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -37,36 +38,45 @@ public class MovieController implements Initializable, Observer {
     @FXML
     private Slider ratingSlider;
     
-
-
+    Movie movie = null;
+    
     public MovieController(Movie movie){
     	movie = Movie.getInstanceMultiThread2();
     }
 
-	
+    /**
+     * Initialize the view with default field values
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.movieTitle.setText("myMovie");
-		this.releaseYear.setText("1988");
-		this.director.setText("director");
-		this.writer.setText("writer");
-		this.ratingText.setText("9");
-		this.ratingSlider.adjustValue(9);
+//		this.movieTitle.setText("");
+//		this.releaseYear.setText("");
+//		this.director.setText("");
+//		this.writer.setText("");
+//		this.ratingText.setText("0");
+//		this.ratingSlider.adjustValue(0);
+		
 	}
-
+	
 	/**
 	 * Implement this method from the Observer Interface
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		Movie movie = (Movie) o;
-		movie.setMovieTitle("TEST");
 		this.movieTitle.setText(movie.getMovieTitle());
+		this.releaseYear.setText(Integer.toString(movie.getReleaseYear()));
 		this.director.setText(movie.getDirector());
-		//this.releaseYear.setText(movie.getReleaseYear());
 		this.writer.setText(movie.getWriter());
-		//this.ratingText.setText(movie.getRating());	
-	}	
+		this.ratingText.setText(Integer.toString(movie.getRating()));
+		this.ratingSlider.adjustValue(movie.getRating());
+	}
+	
+	@FXML
+	void changeMovieTitle(ActionEvent event){
+		//parse String from UI
+		movie.setMovieTitle(movieTitle.getText());
+		
+	}
 }
 
 
