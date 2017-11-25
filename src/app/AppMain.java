@@ -48,5 +48,6 @@ public class AppMain extends Application {
 		
 		//create second view
 		createMovieView(460, 100);
+
 	}
 }
