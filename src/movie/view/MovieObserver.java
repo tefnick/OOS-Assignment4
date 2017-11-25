@@ -13,11 +13,11 @@ public class MovieObserver extends Observable {
 	private static volatile MovieObserver singleton = null;
 	
 	public MovieObserver(){
-	lastmovieTitle = " ";
-	lastreleaseYear = 0;
-	lastdirector = " ";
-	lastwriter = " ";
-	lastrating = 1;	
+		lastmovieTitle = " ";
+		lastreleaseYear = 0;
+		lastdirector = " ";
+		lastwriter = " ";
+		lastrating = 1;	
 	}
 	
 	public void detailchanges(String movieTitle, int releaseYear,String director,String writer,int rating){
