@@ -12,19 +12,21 @@ import movie.view.MovieController;
 import movie.view.MovieObserver;
 
 public class AppMain extends Application {
-	private Movie movie;
-	private static MovieObserver observer;
+	private static Movie movie = new Movie(" ",0," "," ",1);;
+	private static MovieObserver observer = new MovieObserver();
+	private static MovieController controller;
+	
 	public AppMain() {
 	}
 	
 	public static void main(String[] args) {
+
 		launch(args);
 	}
 	public void createMovieView(int viewX, int viewY) throws IOException {
 		Stage stage = new Stage();
-		MovieObserver observer = new MovieObserver();
+		MovieObserver observer = MovieObserver.getInstanceSingleThread();
 		MovieController controller = new MovieController(movie);
-		movie = new Movie(" ",0," "," ",1);
 		movie.setMovieObserver(observer);
 		observer.addObserver(controller);
 		FXMLLoader loader = new FXMLLoader(controller.getClass().getResource("MovieView.fxml"));
@@ -38,7 +40,7 @@ public class AppMain extends Application {
         observer.detailchanges("",0,"","",1);
 	}
 	
-	@Override
+	
 	public void start(Stage primaryStage) throws Exception {
 		
 		//create first view

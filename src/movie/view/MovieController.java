@@ -49,6 +49,7 @@ public class MovieController implements Initializable, Observer {
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		releaseYear.setText("");
 		movieTitle.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				movieobserver.setLastmovieTitle(newValue);
@@ -68,7 +69,6 @@ public class MovieController implements Initializable, Observer {
 					movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
 				}
 				catch(NumberFormatException e){
-					
 					releaseYear.setText(newValue);
 				}
 			}

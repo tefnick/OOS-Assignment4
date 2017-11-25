@@ -10,6 +10,7 @@ public class MovieObserver extends Observable {
 	private String lastwriter;
 	private int lastrating;
 	Movie movie = new Movie(lastmovieTitle,lastreleaseYear,lastdirector,lastwriter,lastrating);
+	private static volatile MovieObserver singleton = null;
 	
 	public MovieObserver(){
 	lastmovieTitle = " ";
@@ -75,6 +76,13 @@ public class MovieObserver extends Observable {
 	}
 	public String getLastrating() {
 		return Integer.toString(lastrating);
+	}
+	
+	public static MovieObserver getInstanceSingleThread() {
+		if(singleton == null) {
+			singleton = new MovieObserver();
+		}
+		return singleton;
 	}
 	
 
