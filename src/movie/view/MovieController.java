@@ -63,14 +63,19 @@ public class MovieController implements Initializable, Observer {
 		});
 		
 		releaseYear.textProperty().addListener(new ChangeListener<String>(){
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {			
 				try{
-					Integer.parseInt(newValue);
-					movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
+					if (!newValue.matches("\\d*")) {
+			            releaseYear.setText(newValue.replaceAll("\\D", "")); //strip non-digits
+			        }else{
+			        	Integer.parseInt(newValue);
+			        	movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
+			        }
+				}catch (NumberFormatException e){				
+					//e.getMessage();
+					e.getMessage();
 				}
-				catch(NumberFormatException e){
-					releaseYear.setText(newValue);
-				}
+						
 			}
 		});
 		
@@ -83,8 +88,7 @@ public class MovieController implements Initializable, Observer {
 		ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				newValue = (int) ratingSlider.getValue();
-				movieobserver.setLastrating((int) newValue);
-				
+				movieobserver.setLastrating((int) newValue);			
 			}
 		});
 		

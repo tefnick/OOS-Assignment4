@@ -37,7 +37,7 @@ public class AppMain extends Application {
 		stage.setX(viewX);
 		stage.setY(viewY);
         stage.show();
-        observer.detailchanges("",0,"","",1);
+        observer.detailchanges("", 0,"","",1);
 	}
 	
 	
