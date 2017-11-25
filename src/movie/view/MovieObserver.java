@@ -1,8 +1,6 @@
 package movie.view;
 import java.util.Observable;
-
 import movie.model.Movie;
-//observable
 public class MovieObserver extends Observable {
 	private String lastmovieTitle;
 	private int lastreleaseYear;
@@ -84,6 +82,4 @@ public class MovieObserver extends Observable {
 		}
 		return singleton;
 	}
-	
-
 }

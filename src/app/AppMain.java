@@ -12,9 +12,7 @@ import movie.view.MovieController;
 import movie.view.MovieObserver;
 
 public class AppMain extends Application {
-	private static Movie movie = new Movie(" ",0," "," ",1);;
-	private static MovieObserver observer = new MovieObserver();
-	private static MovieController controller;
+	private static Movie movie = new Movie(" ",0," "," ",1);
 	
 	public AppMain() {
 	}

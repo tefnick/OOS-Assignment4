@@ -93,11 +93,6 @@ public class MovieController implements Initializable, Observer {
 		});
 		
 	}
-
-	/**
-	 * Implement this method from the Observer Interface
-	 * Note: I think we implement Observer in this class?
-	 */
 	public void update(Observable o, Object arg) {
 		movieobserver = (MovieObserver) o;
 		movieTitle.setText(movieobserver.getLastMovieTitle());
@@ -105,7 +100,6 @@ public class MovieController implements Initializable, Observer {
 		releaseYear.setText(movieobserver.getLastreleaseYear());
 		writer.setText(movieobserver.getLastwriter());
 		ratingText.setText(movieobserver.getLastrating());
-		//ratingSlider.adjustValue(Double.valueOf(movieobserver.getLastrating()));
 		ratingSlider.setValue(Double.valueOf(movieobserver.getLastrating()));
 		}
 	}
