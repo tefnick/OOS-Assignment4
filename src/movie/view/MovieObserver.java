@@ -1,5 +1,10 @@
 package movie.view;
 import java.util.Observable;
+/**
+ * This is a  delegate of the movie model
+ * it implements the observable pattern and connects with the observer in the controller
+ * it also implements singleton
+ */
 import movie.model.Movie;
 public class MovieObserver extends Observable {
 	private String lastmovieTitle;
