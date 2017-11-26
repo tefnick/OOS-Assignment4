@@ -39,8 +39,7 @@ public class AppMain extends Application {
 	}
 	
 	
-	public void start(Stage primaryStage) throws Exception {
-		
+	public void start(Stage primaryStage) throws Exception {		
 		//create first view
 		createMovieView(50, 100);
 		

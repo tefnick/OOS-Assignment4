@@ -62,6 +62,7 @@ public class Movie {
 		return movieobserver;
 		
 	}
+	
 	public void setMovieObserver(MovieObserver moObserver){
 		this.movieobserver = moObserver;
 	}

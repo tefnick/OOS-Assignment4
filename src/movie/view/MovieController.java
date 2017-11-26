@@ -46,22 +46,32 @@ public class MovieController implements Initializable, Observer {
     	this.movie = movie;
     }
 	
+	public void initialize(URL location, ResourceBundle resources) {	
+		initializeMovieTitleField();
+		initializeDirectorField();
+		initializeReleaseYearField();
+		initializeWriterField();
+		initializeRatingSlider();	
+	}
 	
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		releaseYear.setText("");
+	private void initializeMovieTitleField() {
 		movieTitle.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				movieobserver.setLastmovieTitle(newValue);
 			}
 		});
-		
+	}
+	
+	private void initializeDirectorField() {
 		director.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				movieobserver.setLastdirector(newValue);
 			}
 		});
-		
+	}
+	
+	private void initializeReleaseYearField() {
+		releaseYear.setText("");
 		releaseYear.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {			
 				try{
@@ -74,25 +84,28 @@ public class MovieController implements Initializable, Observer {
 				}catch (NumberFormatException e){				
 					//e.getMessage();
 					e.getMessage();
-				}
-						
+				}				
 			}
 		});
-		
+	}
+	
+	private void initializeWriterField() {
 		writer.textProperty().addListener(new ChangeListener<String>(){
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				movieobserver.setLastwriter(newValue);
 			}
 		});
-		
+	}
+
+	private void initializeRatingSlider() {
 		ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				newValue = (int) ratingSlider.getValue();
 				movieobserver.setLastrating(newValue.intValue());			
 			}
 		});
-		
 	}
+
 	public void update(Observable o, Object arg) {
 		movieobserver = (MovieObserver) o;
 		movieTitle.setText(movieobserver.getLastMovieTitle());
@@ -102,6 +115,5 @@ public class MovieController implements Initializable, Observer {
 		ratingText.setText(movieobserver.getLastrating());
 		ratingSlider.setValue(Double.valueOf(movieobserver.getLastrating()));
 		}
-	}
-
-
+	
+}

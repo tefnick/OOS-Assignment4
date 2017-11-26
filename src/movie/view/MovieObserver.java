@@ -34,24 +34,28 @@ public class MovieObserver extends Observable {
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
 	public void setLastreleaseYear(int lastreleaseYear) {
 		this.lastreleaseYear = lastreleaseYear;
 		movie.setReleaseYear(this.lastreleaseYear);
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
 	public void setLastdirector(String lastdirector) {
 		this.lastdirector = lastdirector;
 		movie.setDirector(this.lastdirector);
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
 	public void setLastwriter(String lastwriter) {
 		this.lastwriter = lastwriter;
 		movie.setWriter(this.lastwriter);
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
 	public void setLastrating(int lastrating) {
 		this.lastrating = lastrating;
 		movie.setRating(this.lastrating);
@@ -66,12 +70,15 @@ public class MovieObserver extends Observable {
 	public String getLastreleaseYear() {
 		return Integer.toString(lastreleaseYear);
 	}
+	
 	public String getLastdirector() {
 		return lastdirector;
 	}
+	
 	public String getLastwriter() {
 		return lastwriter;
 	}
+	
 	public String getLastrating() {
 		return Integer.toString(lastrating);
 	}
