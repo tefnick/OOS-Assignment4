@@ -6,5 +6,6 @@ Justin De Luna
 Project took us 15 hours
 
 
-link for UML diagram:
-https://drive.google.com/file/d/1xUoej4YcjC2cKnooIpgvfnRpSf7UDqpb/view?usp=sharing
+Notes: 
+MovieObserver.java is our Movie.java delegate and MovieObserve.java
+also uses singleton design pattern

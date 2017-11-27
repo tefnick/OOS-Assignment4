@@ -3,6 +3,7 @@ package movie.model;
 import movie.view.MovieObserver;
 
 public class Movie {
+	
 	private String movieTitle;
 	private int releaseYear;
 	private String director;

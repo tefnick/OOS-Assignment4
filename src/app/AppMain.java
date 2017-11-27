@@ -12,15 +12,16 @@ import movie.view.MovieController;
 import movie.view.MovieObserver;
 
 public class AppMain extends Application {
+	
 	private static Movie movie = new Movie(" ",0," "," ",1);
 	
 	public AppMain() {
 	}
 	
 	public static void main(String[] args) {
-
 		launch(args);
 	}
+	
 	public void createMovieView(int viewX, int viewY) throws IOException {
 		Stage stage = new Stage();
 		MovieObserver observer = MovieObserver.getInstanceSingleThread();
@@ -36,8 +37,7 @@ public class AppMain extends Application {
 		stage.setY(viewY);
         stage.show();
         observer.detailchanges("", 0,"","",1);
-	}
-	
+	}	
 	
 	public void start(Stage primaryStage) throws Exception {		
 		//create first view
@@ -45,6 +45,5 @@ public class AppMain extends Application {
 		
 		//create second view
 		createMovieView(460, 100);
-
 	}
 }

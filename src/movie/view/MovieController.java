@@ -1,22 +1,19 @@
 package movie.view;
 
 import java.net.URL;
-
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import movie.model.Movie;
 import javafx.fxml.Initializable;
 
-//observer
+/**Observer**/
 public class MovieController implements Initializable, Observer {
 
     @FXML
@@ -81,8 +78,7 @@ public class MovieController implements Initializable, Observer {
 			        	Integer.parseInt(newValue);
 			        	movieobserver.setLastreleaseYear(Integer.parseInt(newValue));
 			        }
-				}catch (NumberFormatException e){				
-					//e.getMessage();
+				}catch (NumberFormatException e){
 					e.getMessage();
 				}				
 			}
